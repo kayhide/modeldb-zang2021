@@ -7,6 +7,7 @@ NEURON {
   USEION na READ ena WRITE ina
   RANGE g, gbar,vshift,f04,ina,epsilon,zeta,x1,x2,alpha
   RANGE vshifta,vshifti,vshiftk
+  RANGE alfac, btfac, f01, f02, f03, f04, f0O, fip, f11, f12, f13, f14, f1n, fi1, fi2, fi3, fi4, fi5, fin, b01, b02, b03, b04, b0O, bip, b11, b12, b13, b14, b1n, bi1, bi2, bi3, bi4, bi5, bin
 :      THREADSAFE
 }
 
