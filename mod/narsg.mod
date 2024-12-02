@@ -49,6 +49,7 @@ PARAMETER {
 ASSIGNED {
 	alfac   				: microscopic reversibility factors
 	btfac				
+	afac
 
 	: rates
 	f01  		(/ms)
@@ -174,6 +175,7 @@ PROCEDURE rates(v(mV) )
 
  alfac = (Oon/Con)^(1/4)
  btfac = (Ooff/Coff)^(1/4) 
+ afac = ((Coff/Con)/(Ooff/Oon))^(1/8)
 
  f01 = 4 * alpha * exp((v)/(x1)) * qt
  f02 = 3 * alpha * exp((v)/(x1)) * qt
@@ -181,16 +183,16 @@ PROCEDURE rates(v(mV) )
  f04 = 1 * alpha * exp((v)/(x1)) * qt
  f0O = gamma * qt : * exp(v/x3) - since x3 is infinity
  fip = epsilon * qt : * exp(v/x5)
- f11 = 4 * alpha * alfac * exp((v+vshifti)/x1) * qt
- f12 = 3 * alpha * alfac * exp((v+vshifti)/x1) * qt
- f13 = 2 * alpha * alfac * exp((v+vshifti)/x1) * qt
- f14 = 1 * alpha * alfac * exp((v+vshifti)/x1) * qt
+ f11 = 4 * alpha * afac * exp((v+vshifti)/x1) * qt
+ f12 = 3 * alpha * afac * exp((v+vshifti)/x1) * qt
+ f13 = 2 * alpha * afac * exp((v+vshifti)/x1) * qt
+ f14 = 1 * alpha * afac * exp((v+vshifti)/x1) * qt
  f1n = gamma * qt : * exp(v/x3) dito
  fi1 = Con * qt
- fi2 = Con * alfac * qt
- fi3 = Con * alfac^2 * qt
- fi4 = Con * alfac^3 * qt
- fi5 = Con * alfac^4 * qt
+ fi2 = Con * afac * qt
+ fi3 = Con * afac^2 * qt
+ fi4 = Con * afac^3 * qt
+ fi5 = Con * afac^4 * qt
  fin = Oon * qt
 
  b01 = 1 * beta * exp((v+vshifta)/(x2+vshiftk)) * qt
@@ -200,16 +202,16 @@ PROCEDURE rates(v(mV) )
  
  b0O = delta * qt : * exp(v/x4)
  bip = zeta * exp(v/x6) * qt
- b11 = 1 * beta * btfac * exp((v+vshifti)/x2) * qt
- b12 = 2 * beta * btfac * exp((v+vshifti)/x2) * qt
- b13 = 3 * beta * btfac * exp((v+vshifti)/x2) * qt
- b14 = 4 * beta * btfac * exp((v+vshifti)/x2) * qt
+ b11 = 1 * beta / afac * exp((v+vshifti)/x2) * qt
+ b12 = 2 * beta / afac * exp((v+vshifti)/x2) * qt
+ b13 = 3 * beta / afac * exp((v+vshifti)/x2) * qt
+ b14 = 4 * beta / afac * exp((v+vshifti)/x2) * qt
  b1n = delta * qt : * exp(v/x4)
  bi1 = Coff * qt
- bi2 = Coff * btfac * qt
- bi3 = Coff * btfac^2 * qt
- bi4 = Coff * btfac^3 * qt
- bi5 = Coff * btfac^4 * qt
+ bi2 = Coff / afac * qt
+ bi3 = Coff / afac^2 * qt
+ bi4 = Coff / afac^3 * qt
+ bi5 = Coff / afac^4 * qt
  bin = Ooff * qt
 }
 
